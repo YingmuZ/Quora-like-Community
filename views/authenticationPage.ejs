@@ -1,0 +1,28 @@
+<%- include('./template/openTemplate') %>
+  <div>
+    <p class="fs-2 text-center main-title">Welcome to Matrix Master Community</p>
+  </div>
+  <div class="box">
+    <div id="left-side">
+      <h3 class="auth-title">Log In</h3>
+      <form action="/logIn" method="POST"> 
+        <input placeholder="Email" name="Email" class="form-control rounded-0">
+        <input placeholder="Password" name="Password" class="form-control rounded-0">
+        <button type="submit" class="btn rounded-0">Submit</button>
+        <p><%= loginError %></p>
+      </form>
+    </div>
+    <div id="right-side">
+      <h3 class="auth-title">Sign Up</h3>
+      <form action="/signUp" method="POST">
+        <input placeholder="Full Name" name="UserName" class="form-control rounded-0" required>
+        <input placeholder="Email" name="Email" class="form-control rounded-0" required>
+        <input placeholder="Password" name="Password" class="form-control rounded-0" required>
+        <input placeholder="Repeat Password" name= "RepeatedPassword" class="form-control rounded-0" required>
+        <button type="submit" class="btn rounded-0">Submit</button>
+        <p><%= error %></p>
+      </form>
+
+    </div>
+  </div>
+<%- include('./template/closeTemplate') %>

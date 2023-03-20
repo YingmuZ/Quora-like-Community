@@ -1,0 +1,30 @@
+<%- include('./template/openTemplate') %>
+<%- include('./template/header.ejs') %>
+  <div class="posts-container">
+    <div style="text-align: center;">
+      <p class=" fs-4 main-title">There are <%= result.length%> questions</p>
+      <a href="/addQuestion">
+        <button type="button" class="btn btn-color rounded-0">
+          Add Question
+        </button>
+      </a>
+    </div>
+    <% if (result.length > 0){ %>
+      <% result.forEach(d => { %>
+        <div class="post-container">
+          <div class="post-info-container">
+            <div class="post-description">
+              <h4><%= d.Title %></h4>
+              <p><%= d.Description %></p>
+            </div>
+            <div class="post-details">
+              <a href="/question/<%= d._id %>" class="orangy">See more  <i class="fa-solid fa-arrow-right"></i></a>
+              <p class="gray"> <%= new Date(d.updatedAt).getDate() %>&sol;<%= new Date(d.updatedAt).getMonth()+1 %>&sol;<%= new Date(d.updatedAt).getYear()+1900 %></p>
+
+            </div>
+          </div>
+        </div>
+      <% })%>
+    <% }%>
+  </div>    
+<%- include('./template/closeTemplate') %>

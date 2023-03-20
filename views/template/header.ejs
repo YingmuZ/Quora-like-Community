@@ -1,0 +1,26 @@
+<div class="main-header">
+    <div class="row">
+      <div class="col-2">
+        <% if(user) {%>
+          <a href="/logOut" class="btn-color text-decoration-none">
+            <button type="button" class="btn btn-warning rounded-0">
+              <i class="fa-regular fa-user"></i>  Log Out
+            </button>
+          </a>
+        <% } else {%>
+          <a href="/auth" class="btn-color text-decoration-none">
+            <button type="button" class="btn btn-warning rounded-0">
+              <i class="fa-regular fa-user"></i>  Log In
+            </button>
+          </a>
+        <% } %>
+      </div>
+      <div class="col-8 text-center">
+        <a href="/">
+            <p class=" fs-2 main-title">Matrix Master Community</p>
+        </a>
+      </div>
+      <div class="col-2">
+      </div>
+    </div>
+  </div>
