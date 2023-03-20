@@ -9,9 +9,11 @@ const app = express();
 app.use(express.urlencoded({
   extended: true
 }));
+
 app.set("view engine", "ejs");
 app.use(express.static('public'));
 app.use(cookieParser());
+
 app.use(session({
   secret: process.env.DATABASE_CONNECTION,
   resave: false,
@@ -20,6 +22,6 @@ app.use(session({
 }));
 
 app.use(route);
-app.listen(3000, () => {
-  console.log("server is on port 3000");
+app.listen(3001, () => {
+  console.log("server is on port 3001");
 })
