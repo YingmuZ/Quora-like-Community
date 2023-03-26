@@ -1,0 +1,80 @@
+<%- include('./template/openTemplate') %>
+<%- include('./template/header.ejs') %>
+<div class="post-container">
+  <div class="post-info-container">
+    <div class="question-description">
+      <h4><%= question.Title %></h4>
+      <p><%= question.Description %></p>
+    </div>
+    <div class="question-details">
+      <p>Author: <%= question.User.UserName%></p>
+      <p style="color: gray;">
+        <%= new Date(question.createdAt).getDate() %>&sol;<%= new Date(question.createdAt).getMonth()+1 %>&sol;<%= new Date(question.createdAt).getYear()+1900 %>
+      </p>
+    </div>
+    <div class="question-buttons">
+      <% if (user && user.Questions.includes(question._id)) { %>
+      <div>
+        <a href="/question/delete/<%= question._id %>" class="text-decoration-none">
+          <button type="button" class="btn btn-danger rounded-0">
+            <i class="fa-solid fa-trash-can"></i>
+            Delete
+          </button>
+        </a>
+      </div>
+      <div>
+        <a href="/question/edit/<%= question._id %>" class="text-decoration-none">
+          <button type="button" class="btn btn-primary rounded-0">
+            <i class="fa-solid fa-pencil"></i>
+            Edit Question
+          </button>
+        </a>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+
+<% if (question.Comment.length > 0 ){ %>
+<h3 class="comment-form">Comments</h3>
+<% question.Comment.forEach((c) => { %>
+<div class="post-container">
+  <div class="question-description">
+    <p><%= c.User%></p>
+    <p><%= c.Description %></p>
+  </div>
+  <div class="question-details">
+    <p style="color: gray;">
+      <%= new Date(c.createdAt).getDate() %>&sol;<%= new Date(c.createdAt).getMonth()+1 %>&sol;<%= new Date(c.createdAt).getYear()+1900 %>
+    </p>
+  </div>
+  <div class="question-buttons">
+    <% if (user && user.Comments.includes(c._id) || user && user.Questions.includes(question._id)) { %>
+    <div>
+      <a href="/comment/delete/<%= c._id%>" class=" text-decoration-none rounded-0">
+        <button type="button" class="btn btn-danger rounded-0">
+          <i class="fa-solid fa-trash-can"></i>
+          Delete
+        </button>
+      </a>
+    </div>
+
+    <% } %>
+  </div>
+</div>
+
+<% })%>
+<% } %>
+<% if(user){ %>
+<form class="comment-form" action="/question/<%= question._id %>" method="POST">
+  <div class="mb-3">
+    <div class="div">
+      <label for="comment" class="fs-5">Add Comment</label>
+    </div>
+    <textarea name="comment" id="comment" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-warning rounded-0" id="btn-insertion rounded-0">Submit</button>
+</form>
+<% } %>
+<%- include('./template/closeTemplate') %>
